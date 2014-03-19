@@ -14,6 +14,7 @@ import os, serial, datetime
 from sqlite3 import dbapi2 as sqlite3
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash
+#import SunCalcModule
 
 
 # create our little application :)
@@ -31,7 +32,6 @@ app.config.update(dict(
     PASSWORD='a'
 ))
 app.config.from_envvar('FLASKR_SETTINGS', silent=True)
-
 
 def connect_db():
     """Connects to the specific database."""
@@ -71,10 +71,10 @@ def show_entries():
     cur = db.execute('select title, text from entries order by id desc')
     entries = cur.fetchall()
     datum = datetime.datetime.now()
-    datum = datum.strftime('%Y-%m-%d')
-    
-
-    return render_template('show_entries.html', entries=entries, datum=datum)
+    #datum = datum.strftime('%Y-%m-%d')      
+    datum = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+    #extstr = SunCalcModule.testext()
+    return render_template('show_entries.html', entries=entries, datum=datum) #, extstr=extstr)
 
 
 @app.route('/add', methods=['POST'])
@@ -154,6 +154,6 @@ if __name__ == '__main__':
         port = int(os.environ.get('SERVER_PORT', '80'))
     except ValueError:
         port = 80
-    init_db()
+    init_db()    
     app.run(host, port)
 
