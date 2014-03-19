@@ -13,6 +13,16 @@
 <form action="{{ url_for('usbsend') }}" method="post" class="add-entry">
     <input type="submit" value="usb">
 </form>
+<form action="{{ url_for('SunCalc') }}" method="post" class="add-entry">
+    <dl>
+        <dt>Datetime:
+        <dd><input type="text" size=30 name="MyDatetime">
+        <dt>TimeZone:
+        <dd><input type="text" size=30 name="tmz">
+        <dd><input type="submit" value="SunCalc">
+    </dl>     
+</form>
+
   {% endif %}         
 <ul class="entries">
     {% for entry in entries %}

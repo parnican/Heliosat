@@ -1,5 +1,6 @@
 import datetime, jdcal, parser
 
+#just discoverd this lib https://github.com/pingswept/pysolar/wiki/examples
 
 def testext():
     extstr = 'from external py'

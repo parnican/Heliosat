@@ -10,7 +10,7 @@
     :license: BSD, see LICENSE for more details.
 """
 
-import os, serial, datetime
+import os, serial, datetime, Pysolar
 from sqlite3 import dbapi2 as sqlite3
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash
@@ -70,11 +70,27 @@ def show_entries():
     db = get_db()
     cur = db.execute('select title, text from entries order by id desc')
     entries = cur.fetchall()
-    datum = datetime.datetime.now()
+    #datum = datetime.datetime.now()
     #datum = datum.strftime('%Y-%m-%d')      
-    datum = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+    #d = datetime.datetime.now() # create a datetime object for now
+    #https://github.com/pingswept/pysolar/wiki/examples
+    #datum = str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M")) + str('Alt: ') + str(Pysolar.GetAltitude(48.203424, 17.298552, d)) + str(' Azimut: ') + str(Pysolar.GetAzimuth(48.203424, 17.298552, d))
     #extstr = SunCalcModule.testext()
-    return render_template('show_entries.html', entries=entries, datum=datum) #, extstr=extstr)
+    return render_template('show_entries.html', entries=entries) #, extstr=extstr)
+
+@app.route('/SunCalc', methods=['POST'])
+def SunCalc():
+    if not session.get('logged_in'):
+        abort(401)    
+    d = datetime.datetime.now() # create a datetime object for now
+    mydate = request.form['MyDatetime']
+    timezone = request.form['tmz']
+    #https://github.com/pingswept/pysolar/wiki/examples
+    datum = str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M")) + str('Alt: ') + str(Pysolar.GetAltitude(48.203424, 17.298552, d)) + str(' Azimut: ') + str(Pysolar.GetAzimuth(48.203424, 17.298552, d))
+    flash(timezone + mydate)
+    #return redirect(url_for('show_entries'))
+    return render_template('show_entries.html', datum=datum) #, extstr=extstr)
+
 
 
 @app.route('/add', methods=['POST'])
