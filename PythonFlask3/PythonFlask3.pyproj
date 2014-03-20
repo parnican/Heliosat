@@ -45,11 +45,38 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="static\" />
+    <Folder Include="static\images\" />
+    <Folder Include="static\images\v2\" />
+    <Folder Include="static\images\v3\" />
     <Folder Include="templates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="schema.sql" />
+    <Content Include="static\atom.ico" />
+    <Content Include="static\codiqa.ext.js" />
+    <Content Include="static\extrafeatures.css" />
+    <Content Include="static\images\ajax-loader.gif" />
+    <Content Include="static\images\icons-18-white.png" />
+    <Content Include="static\images\v2\chone_bottom_middle_tile.png" />
+    <Content Include="static\images\v2\chone_corners_sprite.png" />
+    <Content Include="static\images\v2\chone_left_middle_tile.png" />
+    <Content Include="static\images\v2\chone_right_middle_tile.png" />
+    <Content Include="static\images\v2\chone_top_middle_tile.png" />
+    <Content Include="static\images\v3\bg_texture.png" />
+    <Content Include="static\images\v3\project_button_gray_left_cap.png" />
+    <Content Include="static\images\v3\project_button_gray_middle_tile.png" />
+    <Content Include="static\images\v3\project_button_gray_right_cap.png" />
+    <Content Include="static\jquery-1.9.1.min.js" />
+    <Content Include="static\jquery.mobile-1.3.1.min.css" />
+    <Content Include="static\jquery.mobile-1.3.1.min.js" />
+    <Content Include="static\jquery.mobile.min.css" />
+    <Content Include="static\jquery.mobile.min.js" />
+    <Content Include="static\main.css" />
+    <Content Include="static\normalize.css" />
+    <Content Include="static\preview.css" />
     <Content Include="static\style.css" />
+    <Content Include="templates\index.html" />
+    <Content Include="templates\jq.html" />
     <Content Include="templates\layout.html" />
     <Content Include="templates\login.html" />
     <Content Include="templates\show_entries.html" />
