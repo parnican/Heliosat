@@ -1,0 +1,232 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>test</title>
+    <meta property="og:title" content="Codiqa - jQuery Mobile app builder" />
+    <meta property="og:description" content="Drag and drop jQuery Mobile app builder" />
+    <meta property="og:image" content="http://codiqa.com/static/images/icons/codiqa_twitter.jpg" />
+    <link rel="icon" href="https://codiqa.com//static/images/v4/codiqa_favicon.png" />
+    <link rel="stylesheet" href="https://codiqa.com/static/style/util/normalize.css" />
+    <link rel="stylesheet" href="https://codiqa.com/static/style/preview.css" />
+    <link rel="stylesheet" href="https://codiqa.com/static/style/main.css" />
+
+
+</head>
+<body>
+    <div id="preview">
+        <div class="page">
+
+            <div class="tools compact">
+
+                <div class="clearfix">
+                    <div class="clearfix">
+                        <div class="l clearfix">
+                            <select id="devices">
+                                <option value="" selected>--Device size--</option>
+                                <optgroup label="iOS">
+                                    <option value="APPLE_IPHONE5" selected>iPhone 5</option>
+                                    <option value="APPLE_IPHONE3">iPhone 3/4/4S</option>
+                                    <option value="APPLE_IPAD">iPad 1/2/3</option>
+                                </optgroup>
+                                <optgroup label="Other">
+                                    <option value="ANDROID_240x320">240x320</option>
+                                    <option value="ANDROID_320x480">320x480</option>
+                                    <option value="ANDROID_480x800">480x800</option>
+                                    <option value="ANDROID_TABLET_600x1024">600x1024 (tablet)</option>
+                                    <option value="ANDROID_TABLET_720x1280">720x1280 (tablet)</option>
+                                    <option value="ANDROID_TABLET_800x1280">800x1280 (tablet)</option>
+                                </optgroup>
+                            </select>
+                            <a id="orientation" class="button grey clearfix" href="#">
+                                <div class="l"></div>
+                                <div class="l-c">
+                                    ROTATE
+                                </div>
+                                <div class="r"></div>
+                            </a>
+                        </div>
+                        <div class="r clearfix">
+                            <a id="view" class="button grey clearfix" href="#">
+                                <div class="l"></div>
+                                <div class="l-c">
+                                    VIEW ON PHONE
+                                </div>
+                                <div class="r"></div>
+                            </a>
+                        </div>
+                    </div>                       
+                </div>
+            </div>
+            <!--
+                    <div id="pages">
+                      <div>
+                        <h4>Pages</h4>
+                        <ul class="clearfix">
+                        </ul>
+                      </div>
+                    </div>
+            -->
+            <div id="phone">
+                <div class="device portrait">
+                    <div class="t clearfix">
+                        <div class="l"></div>
+                        <div class="l-c"></div>
+                        <div class="r"></div>
+                    </div>
+                    <div class="m clearfix">
+                        <div class="l"></div>
+                        <div class="l-c">
+                            <div id="phone-drop" class="sized droptarget">
+                            </div>
+                            <div class="content sized">
+
+                                <iframe id="framecontent" src="/mobile"></iframe>
+
+                            </div>
+                        </div>
+                        <div class="r"></div>
+                    </div>
+                    <div class="b clearfix">
+                        <div class="l"></div>
+                        <div class="l-c"></div>
+                        <div class="r"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer id="f-w">
+            <div id="f">
+            </div>
+        </footer>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+
+    <script>
+
+
+        var DeviceSizes = {
+            APPLE_IPHONE5: [320, 568],
+            APPLE_IPHONE3: [320, 480],
+            APPLE_IPAD: [768, 1024],
+            ANDROID_240x320: [240, 320],
+            ANDROID_320x480: [320, 480],
+            ANDROID_480x800: [480, 800],
+            ANDROID_TABLET_480x800: [480, 800],
+            ANDROID_TABLET_600x1024: [600, 1024],
+            ANDROID_TABLET_720x1280: [720, 1280],
+            ANDROID_TABLET_800x1280: [800, 1280]
+        }
+        var currentSize = DeviceSizes.APPLE_IPHONE5;
+        var setDeviceSize = function (size) {
+            currentSize = size;
+            $('#phone').width(size[0] + (200 - 114));
+            $('#phone .device .t, #phone .device .m, #phone .device .b').css({
+                width: size[0] + (200 - 114) + 'px'
+            });
+            $('#phone .device .t .l-c').css({
+                width: size[0] - 114 + 'px'
+            });
+            $('#phone .device .m .l, #phone .device .m .r').css({
+                height: size[1] - 96 + 'px'
+            });
+            $('#phone .device .m .l-c, #phone .device .sized').css({
+                width: size[0] + 'px',
+                height: size[1] + 'px'
+            });
+            $('#phone .device .b .l-c').css({
+                width: size[0] - 114 + 'px'
+            });
+        }
+        var currentOrientation = 'portrait';
+        var setDeviceOrientation = function (orientation) {
+            var before = currentSize;
+            if (orientation == 'portrait') {
+                this.setDeviceSize([currentSize[0], currentSize[1]]);
+            } else {
+                this.setDeviceSize([currentSize[1], currentSize[0]]);
+            }
+            currentSize = before;
+            currentOrientation = orientation;
+        }
+        var toggleOrientation = function () {
+            if (currentOrientation == 'portrait') {
+                setDeviceOrientation('landscape');
+            } else {
+                setDeviceOrientation('portrait');
+            }
+        }
+
+        $(document).ready(function () {
+            setDeviceSize(DeviceSizes.APPLE_IPHONE5);
+
+            $('#devices').change(function () {
+                if ($(this).val() == '') {
+                    return;
+                }
+                setDeviceSize(DeviceSizes[$('#devices').val()]);
+            });
+            $('#orientation').click(function () {
+                toggleOrientation();
+                return false;
+            });
+
+            /*
+            if(app.tree) {
+              for(var i = 0; i < app.tree.children.length; i++) {
+                var page = app.tree.children[i];
+                $('#pages ul').append('<li><a href="#" data-cid="' + page.id + '">' + page.properties.title + '</a></li>');
+              }
+            }
+            */
+            /*
+            $('#orientation').change(function() {
+              if($(this).val() == '') {
+                return;
+              }
+              $('.device').removeClass('portrait');
+              $('.device').removeClass('landscape');
+              var o = $('#orientation').val();
+              $('.device').addClass(o);
+              setDeviceOrientation(o);
+            });
+            */
+            $('#share').click(function () {
+                $('#tools-drop').hide();
+                $('#share-drop').toggle();
+                return false;
+            });
+            $('#view').click(function () {
+                $('#share-drop').hide();
+                $('#tools-drop').toggle();
+                return false;
+            });
+            $('#pages ul li a').click(function () {
+                var cid = $(this).data('cid');
+                console.log('Showing page', cid);
+
+                var cw = $('#theframe').get(0).contentWindow;
+                cw.$.mobile.changePage('#' + cid);
+                return false;
+            });
+           
+        });
+
+        $('.collapsible .toggle a').click(function () {
+            var c = $(this).closest('.collapsible');
+            if (c.hasClass('active')) {
+                c.removeClass('active');
+            } else {
+                c.addClass('active');
+            }
+            return false;
+        });
+
+      </script>
+
+  
+</body>
+</html>

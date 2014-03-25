@@ -1,0 +1,231 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+.clearfix { display: inline-block; }
+* html .clearfix { height: 1%; } /* Hides from IE-mac \*/
+.clearfix { display: block; } .l,.l-c { float: left; }
+.r { float: right; }
+
+iframe { background-color: #eee; }
+
+.hidden { display: none; }
+
+#preview {
+  margin-top: 5px;
+}
+
+#phone {
+  overflow: auto;
+  margin: auto;
+}
+.page {
+  margin-left: 40px;
+  margin-top: 20px;
+}
+.device {
+  position: relative;
+  overflow: hidden;
+}
+#phone-drop {
+  display: none;
+  position: absolute;
+  z-index: 120; }
+#phone .landscape .iphone {
+  /*background: url('/static/images/phones/iphone_landscape.png') no-repeat transparent;*/
+  width: 770px;
+  height: 406px;
+  margin-left: -100px;
+  margin-top: 100px;
+}
+#phone .portrait .iphone {
+  /*background: url('/static/images/phones/iphone_port.png') no-repeat transparent;*/
+  width: 406px;
+  height: 770px;
+}
+#phone .landscape .ipad {
+  /*background: url('/static/images/phones/ipad_landscape.png') no-repeat transparent;*/
+  width: 1344px;
+  height: 1007px;
+  margin-left: -100px;
+}
+#phone .portrait .ipad {
+  /*background: url('/static/images/phones/ipad_port.png') no-repeat transparent;*/
+  width: 1171px;
+  height: 1285px;
+  margin-left: -140px;
+}
+#phone .content {
+  position: absolute;
+  z-index: 5;
+}
+#phone iframe {
+  border: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Phone chone stuff */
+#phone .t, #phone .m, #phone .b {
+  width: 100%;
+}
+#phone .device .t  {
+  height: 100px;
+  width: 100%;
+}
+#phone .device .t .l {
+  width: 100px;
+  height: 100px;
+  background: url('/static/images/v2/chone_corners_sprite.png') 0px 0px no-repeat transparent;
+}
+#phone .device .t .l-c {
+  height: 100px;
+  background: url('/static/images/v2/chone_top_middle_tile.png') 0px 0px repeat-x transparent;
+}
+#phone .device .t .r {
+  width: 100px;
+  height: 100px;
+  background: url('/static/images/v2/chone_corners_sprite.png') -100px 0px no-repeat transparent;
+}
+#phone .device .m {
+}
+#phone .device .m .l {
+  width: 100px;
+  background: url('/static/images/v2/chone_left_middle_tile.png') 0px 0px repeat-y transparent;
+}
+#phone .device .m .l-c {
+  margin: -49px -57px;
+}
+#phone .device .m .r {
+  width: 100px;
+  background: url('/static/images/v2/chone_right_middle_tile.png') 0px 0px repeat-y transparent;
+}
+#phone .device .b {
+}
+#phone .device .b .l {
+  width: 100px;
+  height: 100px;
+  background: url('/static/images/v2/chone_corners_sprite.png') 0px -100px no-repeat transparent;
+}
+#phone .device .b .l-c {
+  height: 100px;
+  background: url('/static/images/v2/chone_bottom_middle_tile.png') 0px 0px repeat-x transparent;
+}
+#phone .device .b .r {
+  width: 100px;
+  height: 100px;
+  background: url('/static/images/v2/chone_corners_sprite.png') -100px -100px no-repeat transparent;
+}
+
+#tools-drop, #share-drop {
+  display: none;
+  width: 100%;
+  margin-top: 5px;
+  color: #666666;
+  font-size: 12px;
+}
+
+.tools { 
+  font-size: 12px;
+  background: #e2e2e2; /* Old browsers */
+  background: -moz-linear-gradient(top, #e2e2e2 0%, #c2c2c2 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e2e2e2), color-stop(100%,#c2c2c2)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #e2e2e2 0%,#c2c2c2 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #e2e2e2 0%,#c2c2c2 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #e2e2e2 0%,#c2c2c2 100%); /* IE10+ */
+  background: linear-gradient(top, #e2e2e2 0%,#c2c2c2 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#c2c2c2',GradientType=0 ); /* IE6-9 */
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  box-shadow: 1px 1px 3px #cfcfcf;
+}
+#pages, .tools {
+  padding: 1px;
+  width: 462px;
+  margin: auto;
+}
+#pages {
+  padding: 18px 20px 8px 20px;
+}
+.tools.compact {
+  width: 453px;
+}
+.tools .button {
+  margin-top: 6px;
+}
+.tools > div > div > .r {
+  border-left: 1px solid #ddd;
+  padding-left: 20px;
+  margin-top: -6px;
+}
+.tools > div > div > .l {
+  margin-top: -6px;
+}
+.tools > div > div > .l .button {
+  float: left;
+}
+.tools > div > div > .l #devices {
+  float: left;
+  margin-top: 10px;
+  width: 174px;
+}
+.tools > div > div > .l .button {
+  margin-left: 10px;
+}
+.tools > div {
+  padding: 18px 20px 8px 20px;
+  background: #fbfbfb; /* Old browsers */
+  background: -moz-linear-gradient(top, #fbfbfb 0%, #ebebeb 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fbfbfb), color-stop(100%,#ebebeb)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #fbfbfb 0%,#ebebeb 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #fbfbfb 0%,#ebebeb 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #fbfbfb 0%,#ebebeb 100%); /* IE10+ */
+  background: linear-gradient(top, #fbfbfb 0%,#ebebeb 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fbfbfb', endColorstr='#ebebeb',GradientType=0 ); /* IE6-9 */
+}
+.tools > div:first-child {
+  padding: 8px 20px 8px 20px;
+}
+#pages ul li {
+  display: block;
+  float: left;
+  margin-right: 10px;
+}
+#pages ul li a {
+  display: block; 
+}
+
+.collapsible {
+  position: relative;
+}
+.collapsible .content {
+  display: none;
+}
+.collapsible.active .content {
+  display: block;
+}
+
+.collapsible .hide {
+  display: none;
+}
+.collapsible.active .hide {
+  display: block;
+}
+.collapsible.active .show {
+  display: none;
+}
+.collapsible .label {
+  display: block;
+  font-weight: bold;
+}
+.collapsible.active .label {
+  display: none;
+}
+.collapsible .toggle {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+}

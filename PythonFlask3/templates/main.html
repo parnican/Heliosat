@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>External panels - jQuery Mobile Demos</title>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/themes/default/jquery.mobile-1.4.2.min.css') }}">
+
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+</head>
+<body>
+
+    <div data-role="page" class="jqm-demos" id="panel-fixed-page1" data-title="Panel fixed positioning" data-url="panel-fixed-page1">
+        <div data-role="header" data-position="fixed" data-theme="b">
+            <h1>Main Page</h1>
+            <a href="#nav-panel" data-icon="bars" data-iconpos="notext">Menu</a>
+            {% if session.logged_in %}<a href=" {{ url_for('logout') }}" data-icon="power" data-iconpos="notext"></a>{% endif %}
+            <!--{% if session.logged_in %}<a href=" {{ url_for('logout') }}" data-icon="power" data-iconpos="notext" class=".ui-btn .ui-btn-inner ui-nodisc-icon" style="background-color: red !important;"></a>{% endif %}-->
+        </div><!-- /header -->
+
+
+        <div role="main" class="ui-content jqm-content jqm-fullwidth">
+            {% if not session.logged_in %}
+            <!--<a href="{{ url_for('login') }}">log in</a>-->
+            <div data-role="content">
+                <div data-controltype="textblock">
+                    <p>
+                        <b>
+                            Date &amp; Time
+                        </b>
+                    </p>
+                </div>
+                <hr style="height:1px; background-color:#ccc; border:0; margin-top:12px; margin-bottom:12px;">
+                <form action="{{ url_for('login') }}" method="post">
+                    <div data-role="fieldcontain" data-controltype="textinput">
+                        <label for="textinput1">
+                            Name
+                        </label>
+                        <input name="username" type="text">
+                    </div>
+                    <div data-role="fieldcontain" data-controltype="textinput">
+                        <label for="textinput2">
+                            Password
+                        </label>
+                        <input name="password" type="password">
+                    </div>
+
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+
+            {% else %}
+            <a href="{{ url_for('logout') }}">You are loged in, click here to log out!</a>
+
+            {% endif %}
+
+
+        </div><!-- /content -->
+
+        <div data-role="footer" data-position="fixed" data-theme="b">
+            <h4>Fixed footer</h4>
+        </div><!-- /footer -->
+        <div data-role="panel" data-position-fixed="true" data-display="push" data-theme="b" id="nav-panel">
+            <ul data-role="listview">
+                <li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>
+                <li><a href="/main">Main</a></li>
+                <li><a href="/coordinates">Coordinates</a></li>
+                <li><a href="">Controls</a></li>
+                <li><a href="">Transitions</a></li>
+            </ul>
+        </div><!-- /panel -->
+
+    </div>
+</body>
+</html>

@@ -65,13 +65,34 @@
                     Password
                 </label>
                 <input name="" id="textinput2" placeholder="" value="" type="password">
-            </div>
-            <input type="submit" value="Submit">
+            </div>          
+            <form action="{{ url_for('panelpage') }}" method="post">
+                <input type="submit" value="Submit">
+            </form>
         </div>
     </div>
 
 
     <div data-role="page" data-control-title="coordinates" id="page4">
+        <div data-role="panel" id="panel3" data-position="left" data-display="reveal" data-theme="a">
+            <ul data-role="listview" data-divider-theme="h" data-inset="false">
+                <li data-theme="a">
+                    <a href="#page3" data-transition="slide">
+                        Login
+                    </a>
+                </li>
+                <li data-theme="a">
+                    <a href="#page4" data-transition="slide">
+                        Coordinates
+                    </a>
+                </li>
+                <li data-theme="a">
+                    <a href="#page5" data-transition="slide">
+                        Controls
+                    </a>
+                </li>
+            </ul>
+        </div>
         <div data-theme="a" data-role="header">
             <a data-controltype="panelbutton" data-role="button" href="#panel3" data-icon="bars"
                data-iconpos="notext" class="ui-btn-left">

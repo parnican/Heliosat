@@ -82,11 +82,24 @@ def show_entries():
     #datum = str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M")) + str('Alt: ') + str(Pysolar.GetAltitude(48.203424, 17.298552, d)) + str(' Azimut: ') + str(Pysolar.GetAzimuth(48.203424, 17.298552, d))
     #extstr = SunCalcModule.testext()
     #return render_template('show_entries.html', entries=entries) #, extstr=extstr)
-    return render_template('index.html', entries=entries) #, extstr=extstr)
+    #return render_template('index.html', entries=entries) #, extstr=extstr)
+    return render_template('main.html')
 
 @app.route('/mobile')
 def openmobilepage():  
     return render_template('jq.html')
+
+@app.route('/main')
+def main():  
+    return render_template('main.html')
+
+@app.route('/coordinates')
+def coordinates():  
+    return render_template('coordinates.html')
+
+@app.route('/panel')
+def panelpage():  
+    return render_template('panel.html')
 
 
 #def process_request(self, request):
@@ -160,7 +173,7 @@ def login():
             session['logged_in'] = True
             flash('You were logged in')            
             return redirect(url_for('show_entries'))
-    return render_template('login.html', error=error)
+    return render_template('main.html', error=error)
 
 
 @app.route('/logout')
